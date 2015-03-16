@@ -12,9 +12,10 @@ import time
 import schedule
 from pyslack import SlackClient #From github.com/loisaidasam/pyslack
 
-#TODO: Figure out how to make this token secret before making a commit
 api_key = open('api_key.txt').read().strip()
-api_key = api_key[0]
+#READ API KEY from a separate file, ignored using .gitignore
+#api_key = api_key[0]
+print api_key
 client = SlackClient(api_key)
 
 
@@ -58,7 +59,7 @@ def print_menu():
                         for dish in element['meals']['en'][day_of_the_week]:
                             menu=menu+dish+"\n"
                     menu = menu+"---------------------"
-                    client.chat_post_message('#test',menu,username='lounasbot')
+                    client.chat_post_message('#lunch',menu,username='lounasbot')
                         #print element['meals']['en'][0] #Print the menu
 
 def main():
